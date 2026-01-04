@@ -1,0 +1,134 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" version="21.0.0" etag="drawio-diagram" type="device">
+  <diagram id="C4-Context-Diagram" name="C4 Context Diagram - Target State">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Центральная система -->
+        <mxCell id="system" value="Система &quot;Медикаменте&quot;&#xa;(Целевое состояние)&#xa;&#xa;Единая автоматизированная система&#xa;управления медицинским центром&#xa;с Privacy by Design" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="400" width="400" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Пользователи слева -->
+        <mxCell id="patient" value="Пациент" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mobile" value="Мобильное&#xa;приложение" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="50" y="380" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="doctor" value="Медицинский&#xa;специалист" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="480" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="reception" value="Сотрудник&#xa;ресепшена" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="580" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cashier" value="Кассир" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="680" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="accountant" value="Бухгалтер" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="780" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouse" value="Сотрудник&#xa;склада" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="analyst" value="Аналитик" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" value="Технический&#xa;директор" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="100" y="0" width="30" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Внешние системы справа -->
+        <mxCell id="lab" value="Лаборатория&#xa;анализов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="100" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="payment" value="Платёжный&#xa;провайдер" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="200" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1c-accounting" value="1С:Бухгалтерия&#xa;предприятия" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="300" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1c-warehouse" value="1С:Торговля&#xa;и склад" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="400" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kkm" value="ККМ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="500" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tax" value="Налоговые&#xa;органы" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="1200" y="600" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Связи от пользователей к системе -->
+        <mxCell id="link-patient" value="HTTPS/TLS&#xa;MFA, RBAC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="patient" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-mobile" value="HTTPS/TLS&#xa;Аутентификация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="mobile" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-doctor" value="HTTPS/TLS&#xa;MFA, RBAC, Аудит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="doctor" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-reception" value="HTTPS/TLS&#xa;MFA, RBAC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="reception" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-cashier" value="HTTPS/TLS&#xa;MFA, RBAC&#xa;PCI DSS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="cashier" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-accountant" value="HTTPS/TLS&#xa;MFA, RBAC, Аудит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="accountant" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-warehouse" value="HTTPS/TLS&#xa;MFA, RBAC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="warehouse" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-analyst" value="HTTPS/TLS&#xa;MFA, RBAC&#xa;Обезличенные данные" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="analyst" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-admin" value="HTTPS/TLS&#xa;MFA, Привилегированный доступ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="admin" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Связи от системы к внешним системам -->
+        <mxCell id="link-lab" value="HTTPS/TLS&#xa;API ключи, Аудит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="lab">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-payment" value="HTTPS/TLS&#xa;PCI DSS, Токенизация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-1c-accounting" value="HTTPS/TLS&#xa;Шифрование, Аудит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="1c-accounting">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-1c-warehouse" value="HTTPS/TLS&#xa;Шифрование" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="1c-warehouse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-kkm" value="TLS&#xa;Маскирование данных" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="kkm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="link-tax" value="HTTPS/TLS&#xa;Шифрование, Аудит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2" edge="1" parent="1" source="system" target="tax">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Обратная связь от платёжного провайдера -->
+        <mxCell id="link-payment-back" value="Результаты обработки" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;dashed=1" edge="1" parent="1" source="payment" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Легенда -->
+        <mxCell id="legend-title" value="Легенда" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="900" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-user" value="Пользователи" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="50" y="940" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-system" value="Система" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="1">
+          <mxGeometry x="160" y="940" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-external" value="Внешние системы" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="270" y="940" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

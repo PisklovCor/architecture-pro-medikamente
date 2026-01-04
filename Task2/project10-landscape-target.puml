@@ -1,0 +1,53 @@
+@startuml C4_Context_Diagram_Target_State
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Диаграмма контекста C4 - Целевое состояние системы "Медикаменте"
+
+Person(patient, "Пациент", "Клиент медицинского центра")
+Person(doctor, "Медицинский специалист", "Врач или другой медицинский работник")
+Person(reception, "Сотрудник ресепшена", "Административный сотрудник")
+Person(cashier, "Кассир", "Сотрудник, принимающий платежи")
+Person(accountant, "Бухгалтер", "Сотрудник бухгалтерии")
+Person(warehouse, "Сотрудник склада", "Сотрудник, ведущий учёт ТМЦ")
+Person(analyst, "Аналитик", "Бизнес-аналитик")
+Person(admin, "Технический директор", "IT-специалист, управляющий системой")
+
+System(medikamente, "Система 'Медикаменте'", "Единая автоматизированная система управления медицинским центром с Privacy by Design")
+
+System_Ext(mobile, "Мобильное приложение", "Клиентское мобильное приложение для пациентов")
+System_Ext(lab, "Лаборатория анализов", "Внешняя лаборатория, выполняющая анализы")
+System_Ext(payment, "Платёжный провайдер", "Внешний сервис для обработки платежей")
+System_Ext(accounting1c, "1С:Бухгалтерия", "Система бухгалтерского учёта")
+System_Ext(warehouse1c, "1С:Торговля и склад", "Система учёта ТМЦ")
+System_Ext(kkm, "ККМ", "Контрольно-кассовые машины")
+System_Ext(tax, "Налоговые органы", "Государственные органы")
+
+' Взаимодействия с пользователями
+Rel(patient, medikamente, "Запись на приём, просмотр данных, управление согласиями", "HTTPS/TLS, MFA, RBAC")
+Rel(mobile, medikamente, "Все операции пациентов", "HTTPS/TLS, Аутентификация")
+Rel(doctor, medikamente, "Просмотр мед. карт, ввод данных о приёме", "HTTPS/TLS, MFA, RBAC, Аудит")
+Rel(reception, medikamente, "Управление записями, заключение договоров", "HTTPS/TLS, MFA, RBAC")
+Rel(cashier, medikamente, "Приём платежей, формирование чеков", "HTTPS/TLS, MFA, RBAC, PCI DSS")
+Rel(accountant, medikamente, "Бухгалтерский учёт, формирование отчётов", "HTTPS/TLS, MFA, RBAC, Аудит")
+Rel(warehouse, medikamente, "Учёт ТМЦ", "HTTPS/TLS, MFA, RBAC")
+Rel(analyst, medikamente, "Работа с BI-системами, построение отчётов", "HTTPS/TLS, MFA, RBAC, Обезличенные данные")
+Rel(admin, medikamente, "Управление системой, настройка политик", "HTTPS/TLS, MFA, Привилегированный доступ")
+
+' Взаимодействия с внешними системами
+Rel(lab, medikamente, "Передача результатов анализов", "HTTPS/TLS, API ключи, Аудит")
+Rel(medikamente, payment, "Обработка платежей", "HTTPS/TLS, PCI DSS, Токенизация")
+Rel(payment, medikamente, "Результаты обработки платежей", "HTTPS/TLS")
+Rel(medikamente, accounting1c, "Синхронизация финансовых данных", "HTTPS/TLS, Шифрование, Аудит")
+Rel(accounting1c, medikamente, "Данные о начислении зарплаты", "HTTPS/TLS, Шифрование")
+Rel(medikamente, warehouse1c, "Синхронизация данных о ТМЦ", "HTTPS/TLS, Шифрование, Аудит")
+Rel(warehouse1c, medikamente, "Данные о наличии ТМЦ", "HTTPS/TLS, Шифрование")
+Rel(medikamente, kkm, "Печать чеков", "TLS, Маскирование данных, Аудит")
+Rel(kkm, medikamente, "Данные о напечатанных чеках", "TLS")
+Rel(medikamente, tax, "Передача налоговой отчётности", "HTTPS/TLS, Шифрование, Аудит")
+
+SHOW_LEGEND()
+
+@enduml
+
