@@ -1,0 +1,181 @@
+@startuml Диаграмма C2 - Движок классификации данных
+
+!define RECTANGLE class
+
+title Диаграмма C2 - Движок классификации данных перед загрузкой в аналитическое хранилище
+
+package "Источники данных" {
+  [Операционные системы] as OpsSystems
+  [1С:Бухгалтерия] as 1C
+  [PostgreSQL\nОперационные данные] as OpsDB
+  [Файловые хранилища] as FileStorage
+}
+
+package "Движок классификации данных" {
+  
+  package "Слой приёма данных" {
+    [Приёмник данных\nData Ingestion Service] as DataIngestion
+    [Очередь сообщений\nApache Kafka] as MessageQueue
+  }
+  
+  package "Слой анализа" {
+    [Анализатор структуры\nSchema Analyzer] as SchemaAnalyzer
+    [Реестр схем данных] as SchemaRegistry
+  }
+  
+  package "Слой классификации" {
+    [Классификатор данных\nData Classifier] as DataClassifier
+    [Словарь ключевых слов] as KeywordDict
+    [Правила классификации] as ClassificationRules
+    [ML-модели классификации] as MLModels
+  }
+  
+  package "Слой валидации" {
+    [Валидатор политик\nPolicy Validator] as PolicyValidator
+    [Сервис политик\nPrivacy Policy Service] as PolicyService
+  }
+  
+  package "Слой маршрутизации" {
+    [Маршрутизатор данных\nData Router] as DataRouter
+  }
+}
+
+package "Сервисы обработки данных" {
+  [Сервис обезличивания\nData Anonymization Service] as AnonymizationService
+  [Сервис токенизации\nTokenization Service] as TokenizationService
+  [Сервис маскирования\nData Masking Service] as MaskingService
+}
+
+package "Многослойное хранилище данных" {
+  
+  package "Слой обезличенных данных" {
+    database "ClickHouse\nAnonymized Data" as AnonymizedLayer
+    database "MinIO/S3\nAnonymized Objects" as AnonymizedObjects
+  }
+  
+  package "Слой токенизированных данных" {
+    database "ClickHouse\nTokenized Data" as TokenizedLayer
+    database "HashiCorp Vault\nToken Mapping" as TokenVault
+  }
+  
+  package "Слой маскированных данных" {
+    database "PostgreSQL\nMasked Data" as MaskedLayer
+  }
+  
+  package "Слой внутренних данных" {
+    database "ClickHouse\nInternal Data" as InternalLayer
+  }
+}
+
+package "Аналитические системы" {
+  [BI-системы\nApache Superset] as BISystems
+  [ML/AI платформы] as MLPlatforms
+  [Системы отчётности] as ReportingSystems
+}
+
+package "Вспомогательные сервисы" {
+  [Сервис управления ключами\nHashiCorp Vault] as KeyVault
+  [Сервис аудита\nAudit Service] as AuditService
+  [Сервис мониторинга\nMonitoring Service] as MonitoringService
+  [Apache Atlas\nМетаданные] as MetadataService
+}
+
+' Потоки данных от источников
+OpsSystems --> DataIngestion : Пакетные данные
+1C --> DataIngestion : Экспорт данных
+OpsDB --> DataIngestion : Извлечение данных
+FileStorage --> DataIngestion : Файлы данных
+
+' Обработка в движке классификации
+DataIngestion --> MessageQueue : Буферизация
+MessageQueue --> SchemaAnalyzer : Данные для анализа
+SchemaAnalyzer --> SchemaRegistry : Сохранение схем
+SchemaRegistry --> SchemaAnalyzer : Получение схем
+
+SchemaAnalyzer --> DataClassifier : Данные с метаданными структуры
+DataClassifier --> KeywordDict : Проверка ключевых слов
+DataClassifier --> ClassificationRules : Применение правил
+DataClassifier --> MLModels : ML-классификация
+KeywordDict --> DataClassifier : Результаты проверки
+ClassificationRules --> DataClassifier : Результаты правил
+MLModels --> DataClassifier : Результаты ML
+
+DataClassifier --> PolicyValidator : Данные с тегами конфиденциальности
+PolicyValidator --> PolicyService : Проверка политик
+PolicyService --> PolicyValidator : Результаты проверки
+
+PolicyValidator --> DataRouter : Валидированные данные
+DataRouter --> AnonymizationService : TOP_SECRET данные
+DataRouter --> TokenizationService : RESTRICTED данные
+DataRouter --> MaskingService : CONFIDENTIAL данные
+DataRouter --> InternalLayer : INTERNAL данные
+
+' Обработка данных
+AnonymizationService --> AnonymizedLayer : Обезличенные данные
+AnonymizedService --> AnonymizedObjects : Обезличенные объекты
+TokenizationService --> TokenizedLayer : Токенизированные данные
+TokenizationService --> TokenVault : Таблица соответствий
+MaskingService --> MaskedLayer : Маскированные данные
+
+' Доступ к хранилищу
+AnonymizedLayer --> BISystems : Аналитические запросы
+AnonymizedLayer --> MLPlatforms : Данные для обучения
+TokenizedLayer --> BISystems : Аналитические запросы
+TokenizedLayer --> MLPlatforms : Данные для обучения
+MaskedLayer --> BISystems : Запросы с маскированием
+InternalLayer --> ReportingSystems : Публичные отчёты
+InternalLayer --> BISystems : Бизнес-метрики
+
+' Вспомогательные сервисы
+KeyVault --> AnonymizationService : Ключи шифрования
+KeyVault --> TokenizationService : Ключи шифрования
+KeyVault --> MaskedLayer : Ключи шифрования
+KeyVault --> AnonymizedLayer : Ключи шифрования
+KeyVault --> TokenizedLayer : Ключи шифрования
+
+AuditService --> DataIngestion : Логирование операций
+AuditService --> SchemaAnalyzer : Логирование операций
+AuditService --> DataClassifier : Логирование операций
+AuditService --> PolicyValidator : Логирование операций
+AuditService --> DataRouter : Логирование операций
+AuditService --> AnonymizationService : Логирование операций
+AuditService --> TokenizationService : Логирование операций
+
+MonitoringService --> DataIngestion : Метрики производительности
+MonitoringService --> SchemaAnalyzer : Метрики производительности
+MonitoringService --> DataClassifier : Метрики классификации
+MonitoringService --> PolicyValidator : Метрики валидации
+MonitoringService --> DataRouter : Метрики маршрутизации
+
+MetadataService --> SchemaRegistry : Метаданные схем
+MetadataService --> DataClassifier : Метаданные классификации
+MetadataService --> AnonymizedLayer : Метаданные данных
+MetadataService --> TokenizedLayer : Метаданные данных
+
+note right of DataClassifier
+  Методы классификации:
+  - Schema-based (имена полей)
+  - Content-based (содержимое)
+  - Metadata-based (метаданные)
+  - Rule-based (правила)
+  - ML-based (ML-модели)
+end note
+
+note right of DataRouter
+  Маршрутизация:
+  - TOP_SECRET → Обезличивание
+  - RESTRICTED → Токенизация
+  - CONFIDENTIAL → Маскирование
+  - INTERNAL → Прямая загрузка
+end note
+
+note right of AnonymizedLayer
+  Слои обезличенных данных:
+  - Raw Zone
+  - Cleaned Zone
+  - Curated Zone
+  - Analytics Zone
+end note
+
+@enduml
+
